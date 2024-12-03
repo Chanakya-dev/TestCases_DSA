@@ -1,54 +1,58 @@
 import unittest
-from NodeatBegin import CircularLinkedList  # Adjust the import according to your file structure
-
+from NodeatBegin import CircularLinkedList
 class TestCircularLinkedList(unittest.TestCase):
-    
     def setUp(self):
-        # Initialize a new circular linked list before each test
+        """Set up a circular linked list for each test."""
         self.cll = CircularLinkedList()
 
-    def test_add_first_to_empty_list(self):
-        # Add a node to an empty circular linked list
+    def test_add_first_empty_list(self):
+        """Test adding the first node to an empty circular linked list."""
         self.cll.add_first(10)
-        self.assertEqual(self.cll.head.data, 10)
-        self.assertEqual(self.cll.head.next, self.cll.head)  # The next should point to the head itself
+        self.assertEqual(self.cll.head.data, 10)  # Head should be the new node
+        self.assertEqual(self.cll.head.next, self.cll.head)  # Single node should point to itself
 
-    def test_add_first_to_non_empty_list(self):
-        # Add nodes to a non-empty circular linked list
-        self.cll.add_first(10)
-        self.cll.add_first(20)
-        self.assertEqual(self.cll.head.data, 20)
-        self.assertEqual(self.cll.head.next.data, 10)
-        self.assertEqual(self.cll.head.next.next, self.cll.head)  # The last node should point back to the head
-
-    def test_add_multiple_nodes(self):
-        # Add multiple nodes and verify the structure
+    def test_add_first_multiple_nodes(self):
+        """Test adding multiple nodes to the circular linked list."""
         self.cll.add_first(10)
         self.cll.add_first(20)
         self.cll.add_first(30)
 
-        # Check that the first node is 30
-        self.assertEqual(self.cll.head.data, 30)
+        self.assertEqual(self.cll.head.data, 30)  # Head should be the last added node
+        self.assertEqual(self.cll.head.next.data, 20)  # Next node should be 20
+        self.assertEqual(self.cll.head.next.next.data, 10)  # Following node should be 10
+        self.assertEqual(self.cll.head.next.next.next, self.cll.head)  # Circular linkage
 
-        # Check the circular nature of the list
-        current = self.cll.head
-        nodes = []
-        while True:
-            nodes.append(current.data)
-            current = current.next
-            if current == self.cll.head:
-                break
-        self.assertEqual(nodes, [30, 20, 10])  # The list should be in reverse order of insertion
+    def test_display_empty_list(self):
+        """Test displaying an empty list."""
+        # Capturing the printed output
+        from io import StringIO
+        import sys
+        captured_output = StringIO()
+        sys.stdout = captured_output
 
-    def test_empty_list(self):
-        # Check if the list is empty initially
-        self.assertIsNone(self.cll.head)
+        self.cll.display()
+        sys.stdout = sys.__stdout__
 
-    def test_single_node_in_list(self):
-        # Add a single node and verify circular behavior
-        self.cll.add_first(100)
-        self.assertEqual(self.cll.head.data, 100)
-        self.assertEqual(self.cll.head.next, self.cll.head)  # The node should point to itself
+        self.assertEqual(captured_output.getvalue().strip(), "List is empty.")
+
+    def test_display_non_empty_list(self):
+        """Test displaying a non-empty circular linked list."""
+        self.cll.add_first(10)
+        self.cll.add_first(20)
+        self.cll.add_first(30)
+
+        # Capturing the printed output
+        from io import StringIO
+        import sys
+        captured_output = StringIO()
+        sys.stdout = captured_output
+
+        self.cll.display()
+        sys.stdout = sys.__stdout__
+
+        expected_output = "30 -> 20 -> 10 -> (Back to head)"
+        self.assertEqual(captured_output.getvalue().strip(), expected_output)
+
 
 if __name__ == "__main__":
     unittest.main()
