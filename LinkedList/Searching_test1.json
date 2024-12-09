@@ -1,0 +1,56 @@
+{
+  "code": "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head = None\n\n    def search(self, key):\n        temp = self.head\n        while temp is not None:\n            if temp.data == key:\n                return True\n            temp = temp.next\n        return False",
+  "language": "python",
+  "test_cases": [
+    {
+      "description": "Test searching for a key that exists in the list",
+      "function_name": "search",
+      "input": [30],
+      "initial_state": {
+        "linked_list": [10, 20, 30, 40]
+      },
+      "expected": true,
+      "name": "Search for key 30"
+    },
+    {
+      "description": "Test searching for a key that does not exist in the list",
+      "function_name": "search",
+      "input": [50],
+      "initial_state": {
+        "linked_list": [10, 20, 30, 40]
+      },
+      "expected": false,
+      "name": "Search for non-existent key 50"
+    },
+    {
+      "description": "Test searching for the first element in the list",
+      "function_name": "search",
+      "input": [10],
+      "initial_state": {
+        "linked_list": [10, 20, 30, 40]
+      },
+      "expected": true,
+      "name": "Search for the first element"
+    },
+    {
+      "description": "Test searching for the last element in the list",
+      "function_name": "search",
+      "input": [40],
+      "initial_state": {
+        "linked_list": [10, 20, 30, 40]
+      },
+      "expected": true,
+      "name": "Search for the last element"
+    },
+    {
+      "description": "Test searching in an empty list",
+      "function_name": "search",
+      "input": [10],
+      "initial_state": {
+        "linked_list": []
+      },
+      "expected": false,
+      "name": "Search in an empty list"
+    }
+  ]
+}
