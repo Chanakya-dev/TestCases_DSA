@@ -1,0 +1,83 @@
+{
+  "code": "class SimpleArray:\n    def __init__(self):\n        self.data = []\n        self.size = 0\n\n    def add(self, item):\n        self.data.append(item)\n        self.size += 1\n        return True\n\n    def get(self, index):\n        if 0 <= index < self.size:\n            return self.data[index]\n        return None\n\n    def remove(self, index):\n        if 0 <= index < self.size:\n            self.data.pop(index)\n            self.size -= 1\n            return True\n        return False\n\n    def length(self):\n        return self.size\n\n    def search(self, item):\n        for i in range(self.size):\n            if self.data[i] == item:\n                return i\n        return -1",
+  "language": "python",
+  "test_cases": [
+    {
+      "description": "Test adding items to SimpleArray",
+      "function_name": "add",
+      "input": [5],
+      "expected": true,
+      "state_after": {
+        "data": [5],
+        "size": 1
+      },
+      "name": "Add single item"
+    },
+    {
+      "description": "Test getting an existing item from SimpleArray",
+      "function_name": "get",
+      "input": [0],
+      "expected": 5,
+      "state_after": {
+        "data": [5],
+        "size": 1
+      },
+      "name": "Get existing item"
+    },
+    {
+      "description": "Test getting a non-existent item from SimpleArray",
+      "function_name": "get",
+      "input": [1],
+      "expected": null,
+      "state_after": {
+        "data": [5],
+        "size": 1
+      },
+      "name": "Get invalid index"
+    },
+    {
+      "description": "Test removing an existing item from SimpleArray",
+      "function_name": "remove",
+      "input": [0],
+      "expected": true,
+      "state_after": {
+        "data": [],
+        "size": 0
+      },
+      "name": "Remove existing item"
+    },
+    {
+      "description": "Test removing a non-existent item from SimpleArray",
+      "function_name": "remove",
+      "input": [1],
+      "expected": false,
+      "state_after": {
+        "data": [],
+        "size": 0
+      },
+      "name": "Remove invalid index"
+    },
+    {
+      "description": "Test searching for an existing item in SimpleArray",
+      "function_name": "search",
+      "input": [5],
+      "expected": 0,
+      "state_after": {
+        "data": [5],
+        "size": 1
+      },
+      "name": "Search existing item"
+    },
+    {
+      "description": "Test searching for a non-existent item in SimpleArray",
+      "function_name": "search",
+      "input": [10],
+      "expected": -1,
+      "state_after": {
+        "data": [5],
+        "size": 1
+      },
+      "name": "Search non-existent item"
+    }
+  ]
+}
