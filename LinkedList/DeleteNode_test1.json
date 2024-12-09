@@ -1,0 +1,66 @@
+{
+  "code": "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head = None\n\n    def delete(self, key: int) -> None:\n        if self.head and self.head.data == key:\n            self.head = self.head.next\n            return\n        temp = self.head\n        while temp and temp.next:\n            if temp.next.data == key:\n                temp.next = temp.next.next\n                return\n            temp = temp.next\n\n    def print_list(self) -> None:\n        temp = self.head\n        while temp:\n            print(temp.data, end=\" -> \" if temp.next else \"\")\n            temp = temp.next\n        print()",
+  "language": "python",
+  "test_cases": [
+    {
+      "description": "Test deleting the head of the list",
+      "function_name": "delete",
+      "input": [10],
+      "initial_state": {
+        "linked_list": [10, 20, 30]
+      },
+      "expected": [20, 30],
+      "name": "Delete head of the list"
+    },
+    {
+      "description": "Test deleting a middle node",
+      "function_name": "delete",
+      "input": [20],
+      "initial_state": {
+        "linked_list": [10, 20, 30]
+      },
+      "expected": [10, 30],
+      "name": "Delete middle node"
+    },
+    {
+      "description": "Test deleting the last node",
+      "function_name": "delete",
+      "input": [30],
+      "initial_state": {
+        "linked_list": [10, 20, 30]
+      },
+      "expected": [10, 20],
+      "name": "Delete last node"
+    },
+    {
+      "description": "Test deleting a non-existent key",
+      "function_name": "delete",
+      "input": [40],
+      "initial_state": {
+        "linked_list": [10, 20, 30]
+      },
+      "expected": [10, 20, 30],
+      "name": "Delete non-existent key"
+    },
+    {
+      "description": "Test deleting the only node in the list",
+      "function_name": "delete",
+      "input": [10],
+      "initial_state": {
+        "linked_list": [10]
+      },
+      "expected": [],
+      "name": "Delete only node"
+    },
+    {
+      "description": "Test deleting from an empty list",
+      "function_name": "delete",
+      "input": [10],
+      "initial_state": {
+        "linked_list": []
+      },
+      "expected": [],
+      "name": "Delete from empty list"
+    }
+  ]
+}
