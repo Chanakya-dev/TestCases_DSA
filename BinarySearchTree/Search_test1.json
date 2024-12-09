@@ -1,0 +1,144 @@
+{
+  "code": "class Node:\n    def __init__(self, value):\n        self.key = value\n        self.left = None\n        self.right = None\n\ndef insert(root, value):\n    if root is None:\n        return Node(value)\n\n    if value < root.key:\n        root.left = insert(root.left, value)\n    elif value > root.key:\n        root.right = insert(root.right, value)\n\n    return root\n\ndef print_tree(root, level=0, prefix=\"Root: \"):\n    if root is not None:\n        print(\" \" * (level * 4) + prefix + str(root.key))\n        if root.left or root.right:\n            if root.left:\n                print_tree(root.left, level + 1, \"L--- \")\n            else:\n                print(\" \" * ((level + 1) * 4) + \"L--- None\")\n            if root.right:\n                print_tree(root.right, level + 1, \"R--- \")\n            else:\n                print(\" \" * ((level + 1) * 4) + \"R--- None\")",
+  "language": "python",
+  "test_cases": [
+    {
+      "description": "Insert into an empty tree",
+      "function_name": "insert",
+      "input": {
+        "root": null,
+        "value": 100
+      },
+      "expected": {
+        "key": 100,
+        "left": null,
+        "right": null
+      },
+      "name": "Test insert into empty tree"
+    },
+    {
+      "description": "Insert a smaller value to create a left child",
+      "function_name": "insert",
+      "input": {
+        "root": {
+          "key": 100,
+          "left": null,
+          "right": null
+        },
+        "value": 50
+      },
+      "expected": {
+        "key": 100,
+        "left": {
+          "key": 50,
+          "left": null,
+          "right": null
+        },
+        "right": null
+      },
+      "name": "Test insert smaller value"
+    },
+    {
+      "description": "Insert a larger value to create a right child",
+      "function_name": "insert",
+      "input": {
+        "root": {
+          "key": 100,
+          "left": {
+            "key": 50,
+            "left": null,
+            "right": null
+          },
+          "right": null
+        },
+        "value": 150
+      },
+      "expected": {
+        "key": 100,
+        "left": {
+          "key": 50,
+          "left": null,
+          "right": null
+        },
+        "right": {
+          "key": 150,
+          "left": null,
+          "right": null
+        }
+      },
+      "name": "Test insert larger value"
+    },
+    {
+      "description": "Insert into a subtree to create a left child of right subtree",
+      "function_name": "insert",
+      "input": {
+        "root": {
+          "key": 100,
+          "left": {
+            "key": 50,
+            "left": null,
+            "right": null
+          },
+          "right": {
+            "key": 150,
+            "left": null,
+            "right": null
+          }
+        },
+        "value": 125
+      },
+      "expected": {
+        "key": 100,
+        "left": {
+          "key": 50,
+          "left": null,
+          "right": null
+        },
+        "right": {
+          "key": 150,
+          "left": {
+            "key": 125,
+            "left": null,
+            "right": null
+          },
+          "right": null
+        }
+      },
+      "name": "Test insert into right subtree"
+    },
+    {
+      "description": "Insert a duplicate value (no changes expected)",
+      "function_name": "insert",
+      "input": {
+        "root": {
+          "key": 100,
+          "left": {
+            "key": 50,
+            "left": null,
+            "right": null
+          },
+          "right": {
+            "key": 150,
+            "left": null,
+            "right": null
+          }
+        },
+        "value": 100
+      },
+      "expected": {
+        "key": 100,
+        "left": {
+          "key": 50,
+          "left": null,
+          "right": null
+        },
+        "right": {
+          "key": 150,
+          "left": null,
+          "right": null
+        }
+      },
+      "name": "Test insert duplicate value"
+    }
+  ]
+}
