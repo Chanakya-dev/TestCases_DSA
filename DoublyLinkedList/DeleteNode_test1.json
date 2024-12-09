@@ -1,0 +1,66 @@
+{
+  "code": "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.prev = None\n        self.next = None\n\nclass DoublyLinkedList:\n    def __init__(self):\n        self.head = None\n\n    def delete_node(self, key):\n        if not self.head:\n            print(\"The list is empty. Deletion not possible.\")\n            return self.head\n\n        temp = self.head\n\n        if temp.data == key:\n            self.head = temp.next\n            if self.head:\n                self.head.prev = None\n            return self.head\n\n        while temp and temp.data != key:\n            temp = temp.next\n\n        if not temp:\n            print(\"Node not found.\")\n            return self.head\n\n        if temp.prev:\n            temp.prev.next = temp.next\n\n        if temp.next:\n            temp.next.prev = temp.prev\n\n        if not temp.next:\n            if temp.prev:\n                temp.prev.next = None\n\n        return self.head\n\n    def append(self, data):\n        new_node = Node(data)\n        if not self.head:\n            self.head = new_node\n            return\n        last = self.head\n        while last.next:\n            last = last.next\n        last.next = new_node\n        new_node.prev = last\n\n    def print_list(self):\n        temp = self.head\n        while temp:\n            print(temp.data, end=\" <=> \")\n            temp = temp.next\n        print(\"None\")",
+  "language": "python",
+  "test_cases": [
+    {
+      "description": "Test deleting the head node from a list",
+      "function_name": "delete_node",
+      "input": [10],
+      "initial_state": {
+        "dll": [10, 20, 30]
+      },
+      "expected": "20 <=> 30 <=> None",
+      "name": "Delete head node (10)"
+    },
+    {
+      "description": "Test deleting an intermediate node",
+      "function_name": "delete_node",
+      "input": [20],
+      "initial_state": {
+        "dll": [10, 20, 30]
+      },
+      "expected": "10 <=> 30 <=> None",
+      "name": "Delete intermediate node (20)"
+    },
+    {
+      "description": "Test deleting the last node from a list",
+      "function_name": "delete_node",
+      "input": [30],
+      "initial_state": {
+        "dll": [10, 20, 30]
+      },
+      "expected": "10 <=> 20 <=> None",
+      "name": "Delete last node (30)"
+    },
+    {
+      "description": "Test deleting a non-existent node",
+      "function_name": "delete_node",
+      "input": [40],
+      "initial_state": {
+        "dll": [10, 20, 30]
+      },
+      "expected": "The list is empty. Deletion not possible.\nNode not found.\n10 <=> 20 <=> 30 <=> None",
+      "name": "Delete non-existent node (40)"
+    },
+    {
+      "description": "Test deleting the only node in the list",
+      "function_name": "delete_node",
+      "input": [10],
+      "initial_state": {
+        "dll": [10]
+      },
+      "expected": "None",
+      "name": "Delete the only node (10)"
+    },
+    {
+      "description": "Test deleting nodes until the list is empty",
+      "function_name": "delete_node",
+      "input": [10],
+      "initial_state": {
+        "dll": [10, 20, 30]
+      },
+      "expected": "20 <=> 30 <=> None",
+      "name": "Delete head node (10) and then delete intermediate nodes"
+    }
+  ]
+}
