@@ -1,0 +1,56 @@
+{
+  "code": "class Node:\n    def __init__(self, val):\n        self.val = val\n        self.next = None\n        self.prev = None\n\nclass DoublyLinkedList:\n    def __init__(self):\n        self.head = None\n\n    def add_last(self, val):\n        new_node = Node(val)\n\n        if self.head is None:\n            self.head = new_node\n            return\n\n        last = self.head\n        while last.next is not None:\n            last = last.next\n        last.next = new_node\n        new_node.prev = last\n\n    def print_list(self):\n        current = self.head\n        while current:\n            print(current.val, end=\" <-> \" if current.next else \"\")\n            current = current.next\n        print()",
+  "language": "python",
+  "test_cases": [
+    {
+      "description": "Test adding first element to an empty list",
+      "function_name": "add_last",
+      "input": [10],
+      "initial_state": {
+        "dll": []
+      },
+      "expected": "10",
+      "name": "Add first element (10) to an empty list"
+    },
+    {
+      "description": "Test adding second element at the end of the list",
+      "function_name": "add_last",
+      "input": [20],
+      "initial_state": {
+        "dll": [10]
+      },
+      "expected": "10 <-> 20",
+      "name": "Add second element (20) at the end"
+    },
+    {
+      "description": "Test adding third element at the end of the list",
+      "function_name": "add_last",
+      "input": [30],
+      "initial_state": {
+        "dll": [10, 20]
+      },
+      "expected": "10 <-> 20 <-> 30",
+      "name": "Add third element (30) at the end"
+    },
+    {
+      "description": "Test adding fourth element at the end of the list",
+      "function_name": "add_last",
+      "input": [100],
+      "initial_state": {
+        "dll": [10, 20, 30]
+      },
+      "expected": "10 <-> 20 <-> 30 <-> 100",
+      "name": "Add fourth element (100) at the end"
+    },
+    {
+      "description": "Test adding an element to a list with one element",
+      "function_name": "add_last",
+      "input": [50],
+      "initial_state": {
+        "dll": [10]
+      },
+      "expected": "10 <-> 50",
+      "name": "Add element (50) to a list with one element"
+    }
+  ]
+}
