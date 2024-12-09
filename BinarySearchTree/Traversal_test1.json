@@ -1,0 +1,91 @@
+{
+  "code": "class Node:\n    def __init__(self, key):\n        self.key = key\n        self.left = None\n        self.right = None\n\ndef inorder(root):\n    # If the root is None, the function does nothing and returns\n    if root is None:\n        return []\n    # Perform inorder traversal and collect results in a list\n    return inorder(root.left) + [root.key] + inorder(root.right)\n\n# Example Tree Construction for Testing\nroot = Node(100)\nroot.left = Node(50)\nroot.right = Node(200)\nroot.left.left = Node(10)\nroot.left.right = Node(60)\nroot.right.left = Node(150)\nroot.right.right = Node(300)",
+  "language": "python",
+  "test_cases": [
+    {
+      "description": "Test with a balanced BST",
+      "function_name": "inorder",
+      "input": [
+        {
+          "key": 100,
+          "left": {
+            "key": 50,
+            "left": { "key": 10, "left": null, "right": null },
+            "right": { "key": 60, "left": null, "right": null }
+          },
+          "right": {
+            "key": 200,
+            "left": { "key": 150, "left": null, "right": null },
+            "right": { "key": 300, "left": null, "right": null }
+          }
+        }
+      ],
+      "expected": [10, 50, 60, 100, 150, 200, 300],
+      "name": "Balanced BST traversal"
+    },
+    {
+      "description": "Test with an empty tree",
+      "function_name": "inorder",
+      "input": [null],
+      "expected": [],
+      "name": "Empty tree traversal"
+    },
+    {
+      "description": "Test with a single-node tree",
+      "function_name": "inorder",
+      "input": [{ "key": 42, "left": null, "right": null }],
+      "expected": [42],
+      "name": "Single-node tree traversal"
+    },
+    {
+      "description": "Test with a left-skewed tree",
+      "function_name": "inorder",
+      "input": [
+        {
+          "key": 100,
+          "left": {
+            "key": 50,
+            "left": {
+              "key": 25,
+              "left": {
+                "key": 10,
+                "left": null,
+                "right": null
+              },
+              "right": null
+            },
+            "right": null
+          },
+          "right": null
+        }
+      ],
+      "expected": [10, 25, 50, 100],
+      "name": "Left-skewed tree traversal"
+    },
+    {
+      "description": "Test with a right-skewed tree",
+      "function_name": "inorder",
+      "input": [
+        {
+          "key": 100,
+          "left": null,
+          "right": {
+            "key": 150,
+            "left": null,
+            "right": {
+              "key": 200,
+              "left": null,
+              "right": {
+                "key": 300,
+                "left": null,
+                "right": null
+              }
+            }
+          }
+        }
+      ],
+      "expected": [100, 150, 200, 300],
+      "name": "Right-skewed tree traversal"
+    }
+  ]
+}
