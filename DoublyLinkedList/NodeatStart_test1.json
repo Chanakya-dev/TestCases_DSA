@@ -1,0 +1,56 @@
+{
+  "code": "class Node:\n    def __init__(self, val):\n        self.val = val\n        self.next = None\n        self.prev = None\n\nclass DoublyLinkedList:\n    def __init__(self):\n        self.head = None\n\n    def add_first(self, val):\n        new_node = Node(val)\n\n        if self.head is None:\n            self.head = new_node\n            return\n\n        new_node.next = self.head\n        self.head.prev = new_node\n        self.head = new_node\n\n    def print_list(self):\n        current = self.head\n        while current:\n            print(current.val, end=\" <-> \" if current.next else \"\")\n            current = current.next\n        print()",
+  "language": "python",
+  "test_cases": [
+    {
+      "description": "Test adding first element to an empty list",
+      "function_name": "add_first",
+      "input": [10],
+      "initial_state": {
+        "dll": []
+      },
+      "expected": "10",
+      "name": "Add first element (10)"
+    },
+    {
+      "description": "Test adding second element at the beginning of the list",
+      "function_name": "add_first",
+      "input": [20],
+      "initial_state": {
+        "dll": [10]
+      },
+      "expected": "20 <-> 10",
+      "name": "Add second element (20) at the beginning"
+    },
+    {
+      "description": "Test adding third element at the beginning of the list",
+      "function_name": "add_first",
+      "input": [30],
+      "initial_state": {
+        "dll": [20, 10]
+      },
+      "expected": "30 <-> 20 <-> 10",
+      "name": "Add third element (30) at the beginning"
+    },
+    {
+      "description": "Test adding multiple elements sequentially",
+      "function_name": "add_first",
+      "input": [40],
+      "initial_state": {
+        "dll": [30, 20, 10]
+      },
+      "expected": "40 <-> 30 <-> 20 <-> 10",
+      "name": "Add fourth element (40) at the beginning"
+    },
+    {
+      "description": "Test adding an element to a list with one element",
+      "function_name": "add_first",
+      "input": [50],
+      "initial_state": {
+        "dll": [10]
+      },
+      "expected": "50 <-> 10",
+      "name": "Add element (50) to a list with one element"
+    }
+  ]
+}
