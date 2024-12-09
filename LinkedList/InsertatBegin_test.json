@@ -1,0 +1,56 @@
+{
+  "code": "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head = None\n\n    def insert_at_beginning(self, data):\n        # Step 1: Create a new node\n        new_node = Node(data)\n\n        # Step 2: Set the new node's next to the current head\n        new_node.next = self.head\n\n        # Step 3: Update the head to the new node\n        self.head = new_node\n\n    def display(self):\n        current = self.head\n        while current:\n            print(current.data, end=\" -> \")\n            current = current.next\n        print(\"None\")",
+  "language": "python",
+  "test_cases": [
+    {
+      "description": "Test inserting a single element at the beginning",
+      "function_name": "insert_at_beginning",
+      "input": [10],
+      "initial_state": {
+        "linked_list": []
+      },
+      "expected": [10],
+      "name": "Insert a single element at the beginning"
+    },
+    {
+      "description": "Test inserting multiple elements at the beginning",
+      "function_name": "insert_at_beginning",
+      "input": [20],
+      "initial_state": {
+        "linked_list": [10]
+      },
+      "expected": [20, 10],
+      "name": "Insert element at the beginning"
+    },
+    {
+      "description": "Test inserting multiple elements at the beginning in sequence",
+      "function_name": "insert_at_beginning",
+      "input": [30],
+      "initial_state": {
+        "linked_list": [20, 10]
+      },
+      "expected": [30, 20, 10],
+      "name": "Insert element at the beginning in sequence"
+    },
+    {
+      "description": "Test inserting an element when the list is empty",
+      "function_name": "insert_at_beginning",
+      "input": [50],
+      "initial_state": {
+        "linked_list": []
+      },
+      "expected": [50],
+      "name": "Insert element into empty list"
+    },
+    {
+      "description": "Test inserting elements at the beginning in reverse order",
+      "function_name": "insert_at_beginning",
+      "input": [100],
+      "initial_state": {
+        "linked_list": [30, 20, 10]
+      },
+      "expected": [100, 30, 20, 10],
+      "name": "Insert elements at the beginning in reverse order"
+    }
+  ]
+}
