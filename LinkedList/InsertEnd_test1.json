@@ -1,0 +1,66 @@
+{
+  "code": "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head = None\n\n    def insert_at_end(self, data):\n        # Step 1: Create a new node with the given data\n        new_node = Node(data)\n\n        # Step 2: If the list is empty, make the new node the head\n        if self.head is None:\n            self.head = new_node\n            return\n        \n        # Step 3: If the list is not empty, find the last node\n        last_node = self.head\n        while last_node.next:\n            last_node = last_node.next\n\n        # Step 4: Insert the new node after the last node\n        last_node.next = new_node\n\n    def display(self):\n        current = self.head\n        while current:\n            print(current.data, end=\" -> \")\n            current = current.next\n        print(\"None\")",
+  "language": "python",
+  "test_cases": [
+    {
+      "description": "Test inserting elements into an empty list",
+      "function_name": "insert_at_end",
+      "input": [10],
+      "initial_state": {
+        "linked_list": []
+      },
+      "expected": [10],
+      "name": "Insert into empty list"
+    },
+    {
+      "description": "Test inserting multiple elements into the list",
+      "function_name": "insert_at_end",
+      "input": [20],
+      "initial_state": {
+        "linked_list": [10]
+      },
+      "expected": [10, 20],
+      "name": "Insert into non-empty list"
+    },
+    {
+      "description": "Test inserting elements at the end of the list",
+      "function_name": "insert_at_end",
+      "input": [30],
+      "initial_state": {
+        "linked_list": [10, 20]
+      },
+      "expected": [10, 20, 30],
+      "name": "Insert at end of list"
+    },
+    {
+      "description": "Test inserting when the list has several elements",
+      "function_name": "insert_at_end",
+      "input": [40],
+      "initial_state": {
+        "linked_list": [10, 20, 30]
+      },
+      "expected": [10, 20, 30, 40],
+      "name": "Insert at end in a long list"
+    },
+    {
+      "description": "Test inserting a single element into the list",
+      "function_name": "insert_at_end",
+      "input": [50],
+      "initial_state": {
+        "linked_list": []
+      },
+      "expected": [50],
+      "name": "Insert a single element"
+    },
+    {
+      "description": "Test inserting into an empty list (head insertion)",
+      "function_name": "insert_at_end",
+      "input": [100],
+      "initial_state": {
+        "linked_list": []
+      },
+      "expected": [100],
+      "name": "Insert into empty list"
+    }
+  ]
+}
