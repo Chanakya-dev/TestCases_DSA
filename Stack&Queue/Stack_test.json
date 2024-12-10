@@ -1,0 +1,118 @@
+{
+  "code": "stack = [None] * 3  # Stack of size 3\n top = -1  # Indicates the stack is empty\n\n# Push Operation (Adding an Element)\ndef push(val):\n    global top\n    if top == len(stack) - 1:\n        print('Stack is full.')\n        return\n    top += 1\n    stack[top] = val\n    print(f'Pushed {val} into the stack.')\n\n# Pop Operation (Removing an Element)\ndef pop():\n    global top\n    if top == -1:\n        print('Stack is empty.')\n        return\n    popped = stack[top]\n    print(f'Popped element: {popped}')\n    stack[top] = None\n    top -= 1\n\n# Example of using the stack\npush(10)\npush(20)\npush(30)\npush(40)\npop()\npop()\npop()\npop()",
+  "language": "python",
+  "test_cases": [
+    {
+      "description": "Test pushing elements into the stack",
+      "function_name": "push",
+      "input": [10],
+      "initial_state": {
+        "stack": [None, None, None],
+        "top": -1
+      },
+      "expected": {
+        "stack": [10, None, None],
+        "top": 0
+      },
+      "name": "Push an element (10) into an empty stack"
+    },
+    {
+      "description": "Test pushing more elements into the stack",
+      "function_name": "push",
+      "input": [20],
+      "initial_state": {
+        "stack": [10, None, None],
+        "top": 0
+      },
+      "expected": {
+        "stack": [10, 20, None],
+        "top": 1
+      },
+      "name": "Push an element (20) into the stack"
+    },
+    {
+      "description": "Test pushing an element when the stack is full",
+      "function_name": "push",
+      "input": [30],
+      "initial_state": {
+        "stack": [10, 20, None],
+        "top": 1
+      },
+      "expected": {
+        "stack": [10, 20, 30],
+        "top": 2
+      },
+      "name": "Push an element (30) into a stack with two elements"
+    },
+    {
+      "description": "Test trying to push an element when the stack is full",
+      "function_name": "push",
+      "input": [40],
+      "initial_state": {
+        "stack": [10, 20, 30],
+        "top": 2
+      },
+      "expected": {
+        "stack": [10, 20, 30],
+        "top": 2
+      },
+      "name": "Attempt to push an element (40) into a full stack"
+    },
+    {
+      "description": "Test popping elements from the stack",
+      "function_name": "pop",
+      "input": [],
+      "initial_state": {
+        "stack": [10, 20, 30],
+        "top": 2
+      },
+      "expected": {
+        "stack": [10, 20, None],
+        "top": 1
+      },
+      "name": "Pop an element (30) from the stack"
+    },
+    {
+      "description": "Test popping another element from the stack",
+      "function_name": "pop",
+      "input": [],
+      "initial_state": {
+        "stack": [10, 20, None],
+        "top": 1
+      },
+      "expected": {
+        "stack": [10, None, None],
+        "top": 0
+      },
+      "name": "Pop an element (20) from the stack"
+    },
+    {
+      "description": "Test popping the last element from the stack",
+      "function_name": "pop",
+      "input": [],
+      "initial_state": {
+        "stack": [10, None, None],
+        "top": 0
+      },
+      "expected": {
+        "stack": [None, None, None],
+        "top": -1
+      },
+      "name": "Pop the last element (10) from the stack"
+    },
+    {
+      "description": "Test popping an element from an empty stack",
+      "function_name": "pop",
+      "input": [],
+      "initial_state": {
+        "stack": [None, None, None],
+        "top": -1
+      },
+      "expected": {
+        "stack": [None, None, None],
+        "top": -1
+      },
+      "name": "Attempt to pop from an empty stack"
+    }
+  ]
+}
