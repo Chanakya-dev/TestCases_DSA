@@ -1,0 +1,56 @@
+{
+  "code": "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n        self.prev = None\n\nclass DoublyLinkedList:\n    def __init__(self):\n        self.head = None\n\n    def search_node(self, key):\n        temp = self.head\n        while temp:\n            if temp.data == key:\n                return True\n            temp = temp.next\n        return False\n\ndll = DoublyLinkedList()\nnode1 = Node(10)\nnode2 = Node(20)\nnode3 = Node(30)\ndll.head = node1\nnode1.next = node2\nnode2.prev = node1\nnode2.next = node3\nnode3.prev = node2\nprint(dll.search_node(30))\nprint(dll.search_node(100))",
+  "language": "python",
+  "test_cases": [
+    {
+      "description": "Test searching for an existing node (middle node)",
+      "function_name": "search_node",
+      "input": [30],
+      "initial_state": {
+        "dll": [10, 20, 30]
+      },
+      "expected": true,
+      "name": "Search for existing node (30)"
+    },
+    {
+      "description": "Test searching for a node at the beginning of the list (head node)",
+      "function_name": "search_node",
+      "input": [10],
+      "initial_state": {
+        "dll": [10, 20, 30]
+      },
+      "expected": true,
+      "name": "Search for node at the beginning (10)"
+    },
+    {
+      "description": "Test searching for a node at the end of the list (tail node)",
+      "function_name": "search_node",
+      "input": [20],
+      "initial_state": {
+        "dll": [10, 20, 30]
+      },
+      "expected": true,
+      "name": "Search for node at the end (20)"
+    },
+    {
+      "description": "Test searching for a non-existent node",
+      "function_name": "search_node",
+      "input": [100],
+      "initial_state": {
+        "dll": [10, 20, 30]
+      },
+      "expected": false,
+      "name": "Search for non-existent node (100)"
+    },
+    {
+      "description": "Test searching in an empty list",
+      "function_name": "search_node",
+      "input": [10],
+      "initial_state": {
+        "dll": []
+      },
+      "expected": false,
+      "name": "Search in empty list (10)"
+    }
+  ]
+}
