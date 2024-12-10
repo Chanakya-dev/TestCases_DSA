@@ -1,0 +1,43 @@
+{
+  "code": "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n\nclass CircularLinkedList:\n    def __init__(self):\n        self.head = None\n\n    def add_last(self, value):\n        new_node = Node(value)\n        if not self.head:\n            new_node.next = new_node\n            self.head = new_node\n        else:\n            last_node = self.head\n            while last_node.next != self.head:\n                last_node = last_node.next\n            last_node.next = new_node\n            new_node.next = self.head\n\ndef print_circular_list(cll):\n    if cll.head is None:\n        print('The list is empty.')\n        return\n    current = cll.head\n    while True:\n        print(current.data, end=' -> ')\n        current = current.next\n        if current == cll.head:\n            break\n    print(f'(back to {cll.head.data})')",
+  "language": "python",
+  "test_cases": [
+    {
+      "description": "Test adding nodes to an empty circular linked list",
+      "function_name": "add_last",
+      "input": [10, 20, 30, 40],
+      "initial_state": {
+        "cll": []
+      },
+      "expected": "10 -> 20 -> 30 -> 40 -> (back to 10)",
+      "name": "Add nodes to empty circular list"
+    },
+    {
+      "description": "Test adding a single node to the circular linked list",
+      "function_name": "add_last",
+      "input": [10],
+      "initial_state": {
+        "cll": []
+      },
+      "expected": "10 -> (back to 10)",
+      "name": "Add single node to circular list"
+    },
+    {
+      "description": "Test adding multiple nodes and maintaining circular structure",
+      "function_name": "add_last",
+      "input": [10, 20, 30, 40, 50],
+      "initial_state": {
+        "cll": []
+      },
+      "expected": "10 -> 20 -> 30 -> 40 -> 50 -> (back to 10)",
+      "name": "Add multiple nodes and maintain circular structure"
+    },
+    {
+      "description": "Test printing an empty circular linked list",
+      "function_name": "print_circular_list",
+      "input": [],
+      "expected": "The list is empty.",
+      "name": "Print empty circular list"
+    }
+  ]
+}
