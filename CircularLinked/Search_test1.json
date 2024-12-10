@@ -1,0 +1,56 @@
+{
+  "code": "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n\nclass CircularLinkedList:\n    def __init__(self):\n        self.head = None\n\n    def search(self, key):\n        if not self.head:\n            return False\n        temp = self.head\n        while True:\n            if temp.data == key:\n                return True\n            temp = temp.next\n            if temp == self.head:\n                break\n        return False\n\nnode1 = Node(10)\nnode2 = Node(20)\nnode3 = Node(30)\ncll = CircularLinkedList()\ncll.head = node1\nnode1.next = node2\nnode2.next = node3\nnode3.next = node1\n\nprint(cll.search(30))  # Expected output: True\nprint(cll.search(100))  # Expected output: False",
+  "language": "python",
+  "test_cases": [
+    {
+      "description": "Test searching for a value present in the circular linked list",
+      "function_name": "search",
+      "input": [30],
+      "initial_state": {
+        "cll": [10, 20, 30]
+      },
+      "expected": true,
+      "name": "Search for existing value (30)"
+    },
+    {
+      "description": "Test searching for a value not present in the circular linked list",
+      "function_name": "search",
+      "input": [100],
+      "initial_state": {
+        "cll": [10, 20, 30]
+      },
+      "expected": false,
+      "name": "Search for non-existent value (100)"
+    },
+    {
+      "description": "Test searching in an empty circular linked list",
+      "function_name": "search",
+      "input": [10],
+      "initial_state": {
+        "cll": []
+      },
+      "expected": false,
+      "name": "Search in an empty list"
+    },
+    {
+      "description": "Test searching for the head node value in a circular linked list",
+      "function_name": "search",
+      "input": [10],
+      "initial_state": {
+        "cll": [10, 20, 30]
+      },
+      "expected": true,
+      "name": "Search for the head node value (10)"
+    },
+    {
+      "description": "Test searching for a value when the circular linked list contains only one node",
+      "function_name": "search",
+      "input": [10],
+      "initial_state": {
+        "cll": [10]
+      },
+      "expected": true,
+      "name": "Search in a circular list with one node"
+    }
+  ]
+}
