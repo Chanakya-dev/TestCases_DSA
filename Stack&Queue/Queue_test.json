@@ -1,0 +1,134 @@
+{
+  "code": "queue = [None] * 3  # Queue of size 3\n front = 0  # Points to the front of the queue\n rear = 0   # Points to the next position for insertion\n\n# Enqueue Operation (Insertion)\ndef enqueue(val):\n    global rear\n    if rear == len(queue):\n        print('Queue is full.')\n        return\n    queue[rear] = val\n    print(f'Enqueued {val}.')\n    rear += 1\n\n# Dequeue Operation (Deletion)\ndef dequeue():\n    global front\n    if front == rear:\n        print('Queue is empty.')\n        return\n    dequeued = queue[front]\n    print(f'Dequeued element: {dequeued}')\n    front += 1\n\n# Test the Queue Operations\nenqueue('Car 1')\nenqueue('Car 2')\nenqueue('Car 3')\nenqueue('Car 4')\ndequeue()\ndequeue()\ndequeue()\ndequeue()",
+  "language": "python",
+  "test_cases": [
+    {
+      "description": "Test enqueue operation when the queue is empty",
+      "function_name": "enqueue",
+      "input": ["Car 1"],
+      "initial_state": {
+        "queue": [None, None, None],
+        "front": 0,
+        "rear": 0
+      },
+      "expected": {
+        "queue": ["Car 1", None, None],
+        "front": 0,
+        "rear": 1
+      },
+      "name": "Enqueue 'Car 1' into the queue"
+    },
+    {
+      "description": "Test enqueue operation with one element already in the queue",
+      "function_name": "enqueue",
+      "input": ["Car 2"],
+      "initial_state": {
+        "queue": ["Car 1", None, None],
+        "front": 0,
+        "rear": 1
+      },
+      "expected": {
+        "queue": ["Car 1", "Car 2", None],
+        "front": 0,
+        "rear": 2
+      },
+      "name": "Enqueue 'Car 2' into the queue"
+    },
+    {
+      "description": "Test enqueue operation when the queue is full",
+      "function_name": "enqueue",
+      "input": ["Car 3"],
+      "initial_state": {
+        "queue": ["Car 1", "Car 2", None],
+        "front": 0,
+        "rear": 2
+      },
+      "expected": {
+        "queue": ["Car 1", "Car 2", "Car 3"],
+        "front": 0,
+        "rear": 3
+      },
+      "name": "Enqueue 'Car 3' into the queue"
+    },
+    {
+      "description": "Test enqueue operation when the queue is full (overflow)",
+      "function_name": "enqueue",
+      "input": ["Car 4"],
+      "initial_state": {
+        "queue": ["Car 1", "Car 2", "Car 3"],
+        "front": 0,
+        "rear": 3
+      },
+      "expected": {
+        "queue": ["Car 1", "Car 2", "Car 3"],
+        "front": 0,
+        "rear": 3
+      },
+      "name": "Attempt to enqueue 'Car 4' when the queue is full"
+    },
+    {
+      "description": "Test dequeue operation on a non-empty queue",
+      "function_name": "dequeue",
+      "input": [],
+      "initial_state": {
+        "queue": ["Car 1", "Car 2", "Car 3"],
+        "front": 0,
+        "rear": 3
+      },
+      "expected": {
+        "queue": [None, "Car 2", "Car 3"],
+        "front": 1,
+        "rear": 3
+      },
+      "name": "Dequeue 'Car 1' from the queue"
+    },
+    {
+      "description": "Test dequeue operation when the queue has more elements",
+      "function_name": "dequeue",
+      "input": [],
+      "initial_state": {
+        "queue": [None, "Car 2", "Car 3"],
+        "front": 1,
+        "rear": 3
+      },
+      "expected": {
+        "queue": [None, None, "Car 3"],
+        "front": 2,
+        "rear": 3
+      },
+      "name": "Dequeue 'Car 2' from the queue"
+    },
+    {
+      "description": "Test dequeue operation when only one element is left in the queue",
+      "function_name": "dequeue",
+      "input": [],
+      "initial_state": {
+        "queue": [None, None, "Car 3"],
+        "front": 2,
+        "rear": 3
+      },
+      "expected": {
+        "queue": [None, None, None],
+        "front": 3,
+        "rear": 3
+      },
+      "name": "Dequeue 'Car 3' from the queue"
+    },
+    {
+      "description": "Test dequeue operation on an empty queue",
+      "function_name": "dequeue",
+      "input": [],
+      "initial_state": {
+        "queue": [None, None, None],
+        "front": 3,
+        "rear": 3
+      },
+      "expected": {
+        "queue": [None, None, None],
+        "front": 3,
+        "rear": 3
+      },
+      "name": "Attempt to dequeue from an empty queue"
+    }
+  ]
+}
