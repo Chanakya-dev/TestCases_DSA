@@ -1,0 +1,56 @@
+{
+  "code": "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n\nclass CircularLinkedList:\n    def __init__(self):\n        self.head = None\n\n    def add_first(self, value):\n        new_node = Node(value)\n        if not self.head:\n            new_node.next = new_node\n            self.head = new_node\n        else:\n            last_node = self.head\n            while last_node.next != self.head:\n                last_node = last_node.next\n            last_node.next = new_node\n            new_node.next = self.head\n            self.head = new_node\n\n    def display(self):\n        if not self.head:\n            print('List is empty.')\n            return\n        temp = self.head\n        while True:\n            print(temp.data, end=' -> ')\n            temp = temp.next\n            if temp == self.head:\n                break\n        print('(Back to head)')",
+  "language": "python",
+  "test_cases": [
+    {
+      "description": "Test adding the first node to an empty circular linked list",
+      "function_name": "add_first",
+      "input": [10],
+      "initial_state": {
+        "dll": []
+      },
+      "expected": "10 -> (Back to head)",
+      "name": "Add first node to an empty list"
+    },
+    {
+      "description": "Test adding multiple nodes at the beginning",
+      "function_name": "add_first",
+      "input": [20],
+      "initial_state": {
+        "dll": [10]
+      },
+      "expected": "20 -> 10 -> (Back to head)",
+      "name": "Add node to non-empty list"
+    },
+    {
+      "description": "Test adding multiple nodes at the beginning",
+      "function_name": "add_first",
+      "input": [30],
+      "initial_state": {
+        "dll": [20, 10]
+      },
+      "expected": "30 -> 20 -> 10 -> (Back to head)",
+      "name": "Add another node to the beginning"
+    },
+    {
+      "description": "Test displaying the list with multiple nodes",
+      "function_name": "display",
+      "input": [],
+      "initial_state": {
+        "dll": [30, 20, 10]
+      },
+      "expected": "30 -> 20 -> 10 -> (Back to head)",
+      "name": "Display the circular linked list"
+    },
+    {
+      "description": "Test displaying an empty circular linked list",
+      "function_name": "display",
+      "input": [],
+      "initial_state": {
+        "dll": []
+      },
+      "expected": "List is empty.",
+      "name": "Display an empty list"
+    }
+  ]
+}
